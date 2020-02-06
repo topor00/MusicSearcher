@@ -12,6 +12,9 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var mainTable: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
+    var searchResponse: SearchResult? = nil
+    private var timer: Timer?
+    let networkDataFetcher = NetworkDataFetcher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,17 +22,7 @@ class ViewController: UIViewController {
         setupMainTableView()
         setupSearchBar()
         
-        let urlString = "https://itunes.apple.com/search?term=jack+johnson"
-        loadData(urlString: urlString) { (result) in
-            switch result{
-            case .success(let searchResult):
-                searchResult.results.map { (track)  in
-                    print("track.trackName: ", track.trackName)
-                }
-            case .failure(let error):
-                print("error: ", error)
-            }
-        }
+        
     }
     
     private func setupSearchBar(){
@@ -48,18 +41,28 @@ class ViewController: UIViewController {
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return searchResponse?.results.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = mainTable.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "123"
+        let track = searchResponse?.results[indexPath.row]
+        cell.textLabel?.text = track?.trackName
         return cell
     }
 }
 
 extension ViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        let urlString = "https://itunes.apple.com/search?term=\(searchText)&limit=15"
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            self.networkDataFetcher.fetchTracks(urlString: urlString) { (searchResponse) in
+                guard let searchResponse = searchResponse else {return}
+                self.searchResponse = searchResponse
+                self.mainTable.reloadData()
+            }
+        })
+        
     }
 }

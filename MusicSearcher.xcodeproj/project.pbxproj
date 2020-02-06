@@ -15,6 +15,7 @@
 		1053F3AA23EAE5C200D8A11F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1053F3A823EAE5C200D8A11F /* LaunchScreen.storyboard */; };
 		1053F3B223EAEDD000D8A11F /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053F3B123EAEDD000D8A11F /* LoadData.swift */; };
 		1053F3B423EAF21700D8A11F /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053F3B323EAF21700D8A11F /* SearchResult.swift */; };
+		1053F3B823EBBDD300D8A11F /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053F3B723EBBDD300D8A11F /* NetworkDataFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1053F3AB23EAE5C200D8A11F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1053F3B123EAEDD000D8A11F /* LoadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		1053F3B323EAF21700D8A11F /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		1053F3B723EBBDD300D8A11F /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,14 +65,31 @@
 				1053F39D23EAE5C000D8A11F /* AppDelegate.swift */,
 				1053F39F23EAE5C000D8A11F /* SceneDelegate.swift */,
 				1053F3A123EAE5C000D8A11F /* ViewController.swift */,
-				1053F3B123EAEDD000D8A11F /* LoadData.swift */,
-				1053F3B323EAF21700D8A11F /* SearchResult.swift */,
+				1053F3B623EBA70E00D8A11F /* Network */,
+				1053F3B523EBA70600D8A11F /* Models */,
 				1053F3A323EAE5C000D8A11F /* Main.storyboard */,
 				1053F3A623EAE5C200D8A11F /* Assets.xcassets */,
 				1053F3A823EAE5C200D8A11F /* LaunchScreen.storyboard */,
 				1053F3AB23EAE5C200D8A11F /* Info.plist */,
 			);
 			path = MusicSearcher;
+			sourceTree = "<group>";
+		};
+		1053F3B523EBA70600D8A11F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1053F3B323EAF21700D8A11F /* SearchResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1053F3B623EBA70E00D8A11F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1053F3B123EAEDD000D8A11F /* LoadData.swift */,
+				1053F3B723EBBDD300D8A11F /* NetworkDataFetcher.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1053F3B823EBBDD300D8A11F /* NetworkDataFetcher.swift in Sources */,
 				1053F3A223EAE5C000D8A11F /* ViewController.swift in Sources */,
 				1053F39E23EAE5C000D8A11F /* AppDelegate.swift in Sources */,
 				1053F3B423EAF21700D8A11F /* SearchResult.swift in Sources */,
